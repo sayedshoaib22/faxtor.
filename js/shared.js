@@ -36,13 +36,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Theme Toggle (if needed in future)
+    // Theme Toggle
     const themeToggle = document.querySelector('.theme-toggle');
+    const html = document.documentElement;
+
+    // Check for saved theme preference or default to dark
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
     if (themeToggle) {
         themeToggle.addEventListener('click', function () {
-            // Theme toggle functionality can be added here
-            console.log('Theme toggle clicked');
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
         });
+    }
+
+    function updateThemeIcon(theme) {
+        if (themeToggle) {
+            themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
     }
 
     // Smooth scroll for anchor links

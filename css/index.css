@@ -1,8 +1,28 @@
 /* Index Page Specific Styles */
 
 .hero {
-    padding: 8rem 0 6rem;
+    padding: 10rem 0 8rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -12,10 +32,12 @@
 
 .hero-badge {
     margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .hero h1 {
     margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .hero p {
@@ -24,6 +46,7 @@
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero-actions {
@@ -31,6 +54,19 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Services Section */
@@ -40,21 +76,48 @@
 
 .service-card {
     text-align: center;
-    padding: 2.5rem;
-    transition: all 0.3s ease;
+    padding: 3rem 2.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-blue-purple);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+    border-color: rgba(0, 217, 255, 0.3);
 }
 
 .service-card .card-icon {
     margin: 0 auto 1.5rem;
-    font-size: 3rem;
+    font-size: 3.5rem;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .service-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 1.5rem;
     color: var(--accent-teal);
     text-decoration: none;
@@ -63,8 +126,8 @@
 }
 
 .service-link:hover {
-    gap: 0.5rem;
-    transform: translateX(5px);
+    gap: 1rem;
+    color: var(--accent-blue);
 }
 
 /* Industries Section */
@@ -74,29 +137,67 @@
 
 .industry-card {
     text-align: center;
-    padding: 2rem 1.5rem;
-    transition: all 0.3s ease;
+    padding: 2.5rem 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.industry-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: var(--gradient-blue-purple);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.industry-card:hover::after {
+    opacity: 1;
 }
 
 .industry-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(0, 217, 255, 0.05);
 }
 
 .industry-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.4s ease;
+    display: inline-block;
+}
+
+.industry-card:hover .industry-icon {
+    transform: scale(1.15) rotate(-5deg);
 }
 
 .industry-card h4 {
     color: var(--text-primary);
     margin-bottom: 0.75rem;
     font-size: 1.125rem;
+    transition: color 0.3s ease;
+}
+
+.industry-card:hover h4 {
+    color: var(--accent-teal);
 }
 
 .industry-card p {
     color: var(--text-secondary);
     font-size: 0.9375rem;
     margin: 0;
+    transition: color 0.3s ease;
+}
+
+.industry-card:hover p {
+    color: var(--text-primary);
 }
 
 /* Why Choose Section */
@@ -107,33 +208,63 @@
 
 .why-item {
     display: flex;
-    gap: 1.5rem;
-    padding: 2rem;
+    gap: 2rem;
+    padding: 2.5rem;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.why-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-blue-purple);
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+}
+
+.why-item:hover::before {
+    transform: scaleY(1);
 }
 
 .why-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-teal);
+    transform: translateX(10px) translateY(-5px);
+    border-color: rgba(0, 217, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 217, 255, 0.1);
 }
 
 .why-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     flex-shrink: 0;
+    transition: transform 0.4s ease;
+}
+
+.why-item:hover .why-icon {
+    transform: scale(1.15) rotate(10deg);
 }
 
 .why-content h3 {
     color: var(--text-primary);
     margin-bottom: 0.75rem;
     font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+.why-item:hover .why-content h3 {
+    color: var(--accent-teal);
 }
 
 .why-content p {
     color: var(--text-secondary);
     font-size: 1rem;
+    line-height: 1.7;
 }
 
 /* Stats Section */
@@ -143,25 +274,62 @@
 
 .stat-item {
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.stat-item:hover::before {
+    opacity: 1;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: rgba(0, 217, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
 }
 
 .stat-number {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
     background: var(--gradient-blue-purple);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.4s ease;
+    display: inline-block;
+}
+
+.stat-item:hover .stat-number {
+    transform: scale(1.1);
 }
 
 .stat-label {
     color: var(--text-secondary);
     font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.stat-item:hover .stat-label {
+    color: var(--text-primary);
 }
 
 /* Contact Section */
@@ -179,6 +347,7 @@
     font-size: 1.125rem;
     margin-bottom: 2.5rem;
     color: var(--text-secondary);
+    line-height: 1.8;
 }
 
 .contact-details {
@@ -191,28 +360,47 @@
     display: flex;
     gap: 1.5rem;
     align-items: start;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--accent-teal);
+    transform: translateX(5px);
+    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.1);
 }
 
 .contact-icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
 }
 
 .contact-item h4 {
     color: var(--text-primary);
     margin-bottom: 0.5rem;
     font-size: 1rem;
+    font-weight: 600;
 }
 
 .contact-item a {
     color: var(--accent-teal);
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .contact-item a:hover {
     color: var(--accent-blue);
+    transform: translateX(3px);
 }
 
 /* Contact Form */
@@ -221,7 +409,9 @@
 }
 
 .contact-form {
-    padding: 2.5rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(0, 217, 255, 0.2);
 }
 
 .form-group-horizontal {
@@ -229,7 +419,7 @@
     grid-template-columns: 150px 1fr;
     gap: 1.5rem;
     align-items: start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group-horizontal label {
@@ -243,10 +433,10 @@
 .form-group-horizontal input,
 .form-group-horizontal select,
 .form-group-horizontal textarea {
-    padding: 0.875rem 1.25rem;
+    padding: 1rem 1.25rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-primary);
     font-size: 1rem;
     font-family: inherit;
@@ -254,12 +444,19 @@
     width: 100%;
 }
 
+.form-group-horizontal input:hover,
+.form-group-horizontal select:hover,
+.form-group-horizontal textarea:hover {
+    border-color: rgba(0, 217, 255, 0.3);
+}
+
 .form-group-horizontal input:focus,
 .form-group-horizontal select:focus,
 .form-group-horizontal textarea:focus {
     outline: none;
     border-color: var(--accent-teal);
-    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.15);
+    background: rgba(0, 217, 255, 0.02);
 }
 
 .form-group-horizontal textarea {
@@ -311,6 +508,24 @@
 
     .form-group-horizontal label {
         padding-top: 0;
+    }
+
+    .hero {
+        padding: 6rem 0 4rem;
+    }
+
+    .service-card,
+    .industry-card,
+    .why-item,
+    .stat-item {
+        transform: none !important;
+    }
+
+    .service-card:hover,
+    .industry-card:hover,
+    .why-item:hover,
+    .stat-item:hover {
+        transform: translateY(-5px) !important;
     }
 
     .stats-grid {
