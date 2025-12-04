@@ -1,0 +1,287 @@
+/* Blog Detail Page Specific Styles */
+
+.article-header {
+    padding: 4rem 0 3rem;
+    background: var(--bg-secondary);
+}
+
+.article-header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--accent-teal);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    gap: 0.5rem;
+    transform: translateX(-5px);
+}
+
+.article-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.article-category {
+    padding: 0.25rem 0.75rem;
+    background: var(--gradient-blue-purple);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.article-date,
+.article-read-time {
+    color: var(--text-secondary);
+}
+
+.article-header h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.article-excerpt {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.article-content {
+    padding: 4rem 0;
+}
+
+.article-content .container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 4rem;
+    max-width: 1200px;
+}
+
+.article-body {
+    max-width: 800px;
+}
+
+.article-featured-image {
+    width: 100%;
+    height: 400px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.featured-image-placeholder {
+    font-size: 6rem;
+    opacity: 0.5;
+}
+
+.article-section {
+    margin-bottom: 3rem;
+}
+
+.article-section p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.article-section p.lead {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.article-section h2 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.article-section ul {
+    margin-left: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-section ul li {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.article-section a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.article-section a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+.article-share {
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-top: 3rem;
+}
+
+.article-share h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.share-btn:hover {
+    background: var(--card-bg);
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+    transform: translateY(-2px);
+}
+
+/* Sidebar */
+.article-sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.sidebar-widget {
+    margin-bottom: 2rem;
+    padding: 2rem;
+}
+
+.sidebar-widget h3 {
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.related-articles {
+    list-style: none;
+}
+
+.related-articles li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.related-articles li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.related-articles a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.related-articles a:hover {
+    color: var(--accent-teal);
+}
+
+.category-list {
+    list-style: none;
+}
+
+.category-list li {
+    margin-bottom: 0.75rem;
+}
+
+.category-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9375rem;
+}
+
+.category-list a:hover {
+    color: var(--accent-teal);
+}
+
+.sidebar-newsletter-form input:focus {
+    outline: none;
+    border-color: var(--accent-teal);
+}
+
+@media (max-width: 1024px) {
+    .article-content .container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .article-sidebar {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .article-header {
+        padding: 3rem 0 2rem;
+    }
+
+    .article-content {
+        padding: 3rem 0;
+    }
+
+    .article-featured-image {
+        height: 250px;
+    }
+
+    .article-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-section p {
+        font-size: 1rem;
+    }
+
+    .share-buttons {
+        flex-direction: column;
+    }
+
+    .share-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
